@@ -69,16 +69,16 @@ private:
 	HANDLE m_hEvent;
 };
 
-class CTimmerEvt
+class CTimerEvt
 {
 public:
-	CTimmerEvt(BOOL bManualReset = FALSE, LPCTSTR lpszName = nullptr, LPSECURITY_ATTRIBUTES pSecurity = nullptr)
+	CTimerEvt(BOOL bManualReset = FALSE, LPCTSTR lpszName = nullptr, LPSECURITY_ATTRIBUTES pSecurity = nullptr)
 	{
 		m_hTimer = ::CreateWaitableTimer(pSecurity, bManualReset, lpszName);
 		ENSURE(IsValid());
 	}
 
-	~CTimmerEvt()
+	~CTimerEvt()
 	{
 		if(IsValid())
 			ENSURE(::CloseHandle(m_hTimer));
@@ -93,7 +93,7 @@ public:
 		return(IsValid());
 	}
 
-	BOOL Set(LONG lPeriod, LARGE_INTEGER* lpDueTime = nullptr)
+	BOOL Set(LONG lPeriod, LARGE_INTEGER* lpDueTime = nullptr, BOOL bResume = FALSE, PTIMERAPCROUTINE pfnAPC = nullptr, LPVOID lpArg = nullptr)
 	{
 		if(lpDueTime == nullptr)
 		{
@@ -101,7 +101,7 @@ public:
 			lpDueTime->QuadPart = -(lPeriod * 10000LL);
 		}
 
-		return ::SetWaitableTimer(m_hTimer, lpDueTime, lPeriod, nullptr, nullptr, FALSE);
+		return ::SetWaitableTimer(m_hTimer, lpDueTime, lPeriod, pfnAPC, lpArg, bResume);
 	}
 
 
@@ -115,8 +115,8 @@ public:
 	operator const HANDLE	()	const	{return m_hTimer;}
 
 private:
-	CTimmerEvt(const CTimmerEvt&);
-	CTimmerEvt operator = (const CTimmerEvt&);
+	CTimerEvt(const CTimerEvt&);
+	CTimerEvt operator = (const CTimerEvt&);
 
 private:
 	HANDLE m_hTimer;

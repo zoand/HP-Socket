@@ -27,7 +27,20 @@ typedef DWORD							TID, THR_ID, NTHR_ID, PID, PRO_ID;
 
 /* 最大工作线程数 */
 #define MAX_WORKER_THREAD_COUNT			500
-#define DEFAULT_BUFFER_SIZE				(GetDefaultBufferSize())
+/* 默认对象缓存对象锁定时间 */
+#define DEFAULT_OBJECT_CACHE_LOCK_TIME	(20 * 1000)
+/* 默认对象缓存池大小 */
+#define DEFAULT_OBJECT_CACHE_POOL_SIZE	600
+/* 默认对象缓存池回收阀值 */
+#define DEFAULT_OBJECT_CACHE_POOL_HOLD	600
+/* 默认内存块缓存容量 */
+#define DEFAULT_BUFFER_CACHE_CAPACITY	4096
+/* 默认内存块缓存池大小 */
+#define DEFAULT_BUFFER_CACHE_POOL_SIZE	1024
+/* 默认内存块缓存池回收阀值 */
+#define DEFAULT_BUFFER_CACHE_POOL_HOLD	1024
+
+#define SYS_PAGE_SIZE					(GetSysPageSize())
 #define DEFAULT_WORKER_THREAD_COUNT		(GetDefaultWorkerThreadCount())
 #define SELF_PROCESS_ID					(::GetCurrentProcessId())
 #define SELF_THREAD_ID					(::GetCurrentThreadId())
@@ -36,7 +49,7 @@ typedef DWORD							TID, THR_ID, NTHR_ID, PID, PRO_ID;
 #define IsSameProcess(pid1, pid2)		((pid1) == (pid2))
 #define IsSelfProcess(pid)				IsSameProcess((pid), SELF_PROCESS_ID)
 
-DWORD GetDefaultBufferSize();
+DWORD GetSysPageSize();
 DWORD GetDefaultWorkerThreadCount();
 
 // 获取系统信息

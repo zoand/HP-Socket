@@ -74,7 +74,7 @@ BOOL PeekMessageLoop(BOOL bDispatchQuitMsg)
 	return value;
 }
 
-DWORD WaitForMultipleObjectsWithMessageLoop(DWORD dwHandles, HANDLE szHandles[], DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
+DWORD WaitForMultipleObjectsWithMessageLoop(DWORD dwHandles, HANDLE szHandles[], DWORD dwMilliseconds, BOOL bWaitAll, DWORD dwWakeMask)
 {
 	DWORD dwResult		= WAIT_FAILED;
 	DWORD dwBeginTime	= (dwMilliseconds == INFINITE) ? INFINITE : ::timeGetTime();
@@ -95,7 +95,7 @@ DWORD WaitForMultipleObjectsWithMessageLoop(DWORD dwHandles, HANDLE szHandles[],
 		else
 			iWaitTime	= INFINITE;
 
-		dwResult = ::MsgWaitForMultipleObjectsEx(dwHandles, szHandles, iWaitTime, dwWakeMask, dwFlags);
+		dwResult = ::MsgWaitForMultipleObjects(dwHandles, szHandles, bWaitAll, (DWORD)iWaitTime, dwWakeMask);
 		ASSERT(dwResult != WAIT_FAILED);
 
 		if(dwResult == (WAIT_OBJECT_0 + dwHandles))
@@ -107,9 +107,9 @@ DWORD WaitForMultipleObjectsWithMessageLoop(DWORD dwHandles, HANDLE szHandles[],
 	return dwResult;
 }
 
-BOOL MsgWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
+BOOL MsgWaitForSingleObject(HANDLE hHandle, DWORD dwMilliseconds, BOOL bWaitAll, DWORD dwWakeMask)
 {
-	DWORD dwResult = WaitForMultipleObjectsWithMessageLoop(1, &hHandle, dwMilliseconds, dwWakeMask, dwFlags);
+	DWORD dwResult = WaitForMultipleObjectsWithMessageLoop(1, &hHandle, dwMilliseconds, bWaitAll, dwWakeMask);
 
 	switch(dwResult)
 	{
@@ -134,12 +134,12 @@ void WaitFor(DWORD dwMilliseconds)
 		ENSURE(::WaitForSingleObject(s_evWait, dwMilliseconds) == WAIT_TIMEOUT);
 }
 
-void WaitWithMessageLoop(DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
+void WaitWithMessageLoop(DWORD dwMilliseconds, DWORD dwWakeMask)
 {
 	if(dwMilliseconds == 0)
 		::Sleep(0);
 	else
-		ENSURE(MsgWaitForSingleObject(s_evWait, dwMilliseconds, dwWakeMask, dwFlags) == FALSE);
+		ENSURE(MsgWaitForSingleObject(s_evWait, dwMilliseconds, FALSE, dwWakeMask) == FALSE);
 }
 
 void WaitForWorkingQueue(long* plWorkingItemCount, long lMaxWorkingItemCount, DWORD dwCheckInterval)
@@ -162,4 +162,23 @@ void MsgWaitForWorkingQueue(long* plWorkingItemCount, long lMaxWorkingItemCount,
 void MsgWaitForComplete(long* plWorkingItemCount, DWORD dwCheckInterval)
 {
 	MsgWaitForWorkingQueue(plWorkingItemCount, 0, dwCheckInterval);
+}
+
+CTimePeriod::CTimePeriod(UINT uiPeriod)
+{
+	TIMECAPS tc;
+
+	if(::timeGetDevCaps(&tc, sizeof(TIMECAPS)) != TIMERR_NOERROR)
+		m_uiPeriod = 0;
+	else
+	{
+		m_uiPeriod = min(max(tc.wPeriodMin, uiPeriod), tc.wPeriodMax);
+		::timeBeginPeriod(m_uiPeriod);
+	}
+}
+
+CTimePeriod::~CTimePeriod()
+{
+	if(IsValid())
+		::timeEndPeriod(m_uiPeriod);
 }

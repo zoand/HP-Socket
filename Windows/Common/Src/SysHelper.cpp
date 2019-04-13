@@ -33,7 +33,7 @@ DWORD GetDefaultWorkerThreadCount()
 	return s_dwtc;
 }
 
-DWORD GetDefaultBufferSize()
+DWORD GetSysPageSize()
 {
 	static const DWORD s_dtsbs = ::SysGetPageSize();
 	return s_dtsbs;

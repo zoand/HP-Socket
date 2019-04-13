@@ -104,7 +104,6 @@ private:
 
 private:
 	int m_nActive;
-	int m_nReadCount;
 	DWORD m_dwWriterTID;
 
 	CSpinGuard	m_cs;

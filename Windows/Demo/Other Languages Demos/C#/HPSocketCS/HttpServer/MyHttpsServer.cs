@@ -14,7 +14,10 @@ namespace HttpServerDemo
         {
             httpsServer = new HttpsServer(SSLVerifyMode.None, "./ssl-cert/server.cer", "./ssl-cert/server.key", "123456", "./ssl-cert/ca.crt", null);
             // 需要自己初始化ssl环境
-            httpsServer.Initialize();
+            if(!httpsServer.Initialize())
+            {
+                throw new MyException("初始化ssl环境失败：" + Sdk.SYS_GetLastError());
+            }
 
             httpsServer.IpAddress = bindAddress;
             httpsServer.Port = port;

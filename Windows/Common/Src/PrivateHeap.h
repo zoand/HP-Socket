@@ -95,7 +95,10 @@ public:
 public:
 	CPrivateHeapImpl(DWORD dwOptions = 0, SIZE_T dwInitSize = 0, SIZE_T dwMaxSize = 0)
 	: m_dwOptions(dwOptions | HEAP_GENERATE_EXCEPTIONS), m_dwInitSize(dwInitSize), m_dwMaxSize(dwMaxSize)
-		{m_hHeap = ::HeapCreate(m_dwOptions, m_dwInitSize, m_dwMaxSize);}
+	{
+		m_hHeap = ::HeapCreate(m_dwOptions, m_dwInitSize, m_dwMaxSize);
+		ENSURE(IsValid());
+	}
 
 	~CPrivateHeapImpl	()	{if(IsValid()) ::HeapDestroy(m_hHeap);}
 

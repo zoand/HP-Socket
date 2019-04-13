@@ -18,13 +18,13 @@ namespace HttpServerDemo
 
             /*
             // tcp事件
-            httpServer.OnPrepareListen += new TcpServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
-            httpServer.OnAccept += new TcpServerEvent.OnAcceptEventHandler(OnAccept);
-            httpServer.OnSend += new TcpServerEvent.OnSendEventHandler(OnSend);
-            httpServer.OnPointerDataReceive += new TcpServerEvent.OnPointerDataReceiveEventHandler(OnPointerDataReceive);
-            httpServer.OnClose += new TcpServerEvent.OnCloseEventHandler(OnClose);
-            httpServer.OnShutdown += new TcpServerEvent.OnShutdownEventHandler(OnShutdown);
-            httpServer.OnHandShake += new TcpServerEvent.OnHandShakeEventHandler(OnHandShake);
+            httpServer.OnPrepareListen += new ServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
+            httpServer.OnAccept += new ServerEvent.OnAcceptEventHandler(OnAccept);
+            httpServer.OnSend += new ServerEvent.OnSendEventHandler(OnSend);
+            httpServer.OnPointerDataReceive += new ServerEvent.OnPointerDataReceiveEventHandler(OnPointerDataReceive);
+            httpServer.OnClose += new ServerEvent.OnCloseEventHandler(OnClose);
+            httpServer.OnShutdown += new ServerEvent.OnShutdownEventHandler(OnShutdown);
+            httpServer.OnHandShake += new ServerEvent.OnHandShakeEventHandler(OnHandShake);
             */
 
             // 设置http服务器事件

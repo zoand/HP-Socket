@@ -47,19 +47,25 @@ namespace SSLPackClientNS
             try
             {
                 // 初始化ssl环境
-                client.Initialize();
+                // 初始化ssl环境
+                if (!client.Initialize())
+                {
+                    SetAppState(AppState.Error);
+                    AddMsg("初始化ssl环境失败：" + Sdk.SYS_GetLastError());
+                    return;
+                }
 
                 // 加个委托显示msg,因为on系列都是在工作线程中调用的,ui不允许直接操作
                 AddMsgDelegate = new ShowMsg(AddMsg);
 
                 // 设置client事件
-                client.OnPrepareConnect += new TcpClientEvent.OnPrepareConnectEventHandler(OnPrepareConnect);
-                client.OnConnect += new TcpClientEvent.OnConnectEventHandler(OnConnect);
-                client.OnSend += new TcpClientEvent.OnSendEventHandler(OnSend);
-                client.OnReceive += new TcpClientEvent.OnReceiveEventHandler(OnReceive);
-                client.OnClose += new TcpClientEvent.OnCloseEventHandler(OnClose);
+                client.OnPrepareConnect += new ClientEvent.OnPrepareConnectEventHandler(OnPrepareConnect);
+                client.OnConnect += new ClientEvent.OnConnectEventHandler(OnConnect);
+                client.OnSend += new ClientEvent.OnSendEventHandler(OnSend);
+                client.OnReceive += new ClientEvent.OnReceiveEventHandler(OnReceive);
+                client.OnClose += new ClientEvent.OnCloseEventHandler(OnClose);
 
-                client.OnHandShake += new TcpClientEvent.OnHandShakeEventHandler(OnHandShake);
+                client.OnHandShake += new ClientEvent.OnHandShakeEventHandler(OnHandShake);
 
                 // 设置包头标识,与对端设置保证一致性
                 client.PackHeaderFlag = 0xff;
@@ -172,48 +178,48 @@ namespace SSLPackClientNS
             }
         }
 
-        HandleResult OnPrepareConnect(TcpClient sender, IntPtr socket)
+        HandleResult OnPrepareConnect(IClient sender, IntPtr socket)
         {
             return HandleResult.Ok;
         }
 
-        HandleResult OnConnect(TcpClient sender)
+        HandleResult OnConnect(IClient sender)
         {
             // 已连接 到达一次
 
             // 如果是异步联接,更新界面状态
             this.Invoke(new ConnectUpdateUiDelegate(ConnectUpdateUi));
 
-            AddMsg(string.Format(" > [{0},OnConnect]", sender.ConnectionId));
+            AddMsg(string.Format(" > [{0},OnConnect]", client.ConnectionId));
 
             return HandleResult.Ok;
         }
 
-        HandleResult OnSend(TcpClient sender, byte[] bytes)
+        HandleResult OnSend(IClient sender, byte[] bytes)
         {
             // 客户端发数据了
-            AddMsg(string.Format(" > [{0},OnSend] -> ({1} bytes)", sender.ConnectionId, bytes.Length));
+            AddMsg(string.Format(" > [{0},OnSend] -> ({1} bytes)", client.ConnectionId, bytes.Length));
 
             return HandleResult.Ok;
         }
 
-        HandleResult OnReceive(TcpClient sender, byte[] bytes)
+        HandleResult OnReceive(IClient sender, byte[] bytes)
         {
             // 数据到达了
 
-            AddMsg(string.Format(" > [{0},OnReceive] -> ({1} bytes)", sender.ConnectionId, bytes.Length));
+            AddMsg(string.Format(" > [{0},OnReceive] -> ({1} bytes)", client.ConnectionId, bytes.Length));
 
             return HandleResult.Ok;
         }
 
-        HandleResult OnClose(TcpClient sender, SocketOperation enOperation, int errorCode)
+        HandleResult OnClose(IClient sender, SocketOperation enOperation, int errorCode)
         {
             if (errorCode == 0)
                 // 连接关闭了
-                AddMsg(string.Format(" > [{0},OnClose]", sender.ConnectionId));
+                AddMsg(string.Format(" > [{0},OnClose]", client.ConnectionId));
             else
                 // 出错了
-                AddMsg(string.Format(" > [{0},OnError] -> OP:{1},CODE:{2}", sender.ConnectionId, enOperation, errorCode));
+                AddMsg(string.Format(" > [{0},OnError] -> OP:{1},CODE:{2}", client.ConnectionId, enOperation, errorCode));
 
             // 通知界面,只处理了连接错误,也没进行是不是连接错误的判断,所以有错误就会设置界面
             // 生产环境请自己控制
@@ -223,7 +229,7 @@ namespace SSLPackClientNS
         }
 
 
-        HandleResult OnHandShake(TcpClient client)
+        HandleResult OnHandShake(IClient sender)
         {
             // 握手了
             AddMsg(string.Format(" > [{0},OnHandShake])", client.ConnectionId));

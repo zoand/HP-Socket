@@ -47,12 +47,12 @@ namespace TcpPullServer
                 AddMsgDelegate = new ShowMsg(AddMsg);
 
                 // 设置服务器事件
-                server.OnPrepareListen += new TcpServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
-                server.OnAccept += new TcpServerEvent.OnAcceptEventHandler(OnAccept);
-                server.OnSend += new TcpServerEvent.OnSendEventHandler(OnSend);
+                server.OnPrepareListen += new ServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
+                server.OnAccept += new ServerEvent.OnAcceptEventHandler(OnAccept);
+                server.OnSend += new ServerEvent.OnSendEventHandler(OnSend);
                 server.OnReceive += new TcpPullServerEvent.OnReceiveEventHandler(OnReceive);
-                server.OnClose += new TcpServerEvent.OnCloseEventHandler(OnClose);
-                server.OnShutdown += new TcpServerEvent.OnShutdownEventHandler(OnShutdown);
+                server.OnClose += new ServerEvent.OnCloseEventHandler(OnClose);
+                server.OnShutdown += new ServerEvent.OnShutdownEventHandler(OnShutdown);
 
                 SetAppState(AppState.Stoped);
             }
@@ -134,14 +134,14 @@ namespace TcpPullServer
         }
 
 
-        HandleResult OnPrepareListen(TcpServer sender, IntPtr soListen)
+        HandleResult OnPrepareListen(IServer sender, IntPtr soListen)
         {
             // 监听事件到达了,一般没什么用吧?
 
             return HandleResult.Ok;
         }
 
-        HandleResult OnAccept(TcpServer sender, IntPtr connId, IntPtr pClient)
+        HandleResult OnAccept(IServer sender, IntPtr connId, IntPtr pClient)
         {
             // 客户进入了
 
@@ -177,7 +177,7 @@ namespace TcpPullServer
             return HandleResult.Ok;
         }
 
-        HandleResult OnSend(TcpServer sender, IntPtr connId, byte[] bytes)
+        HandleResult OnSend(IServer sender, IntPtr connId, byte[] bytes)
         {
             // 服务器发数据了
 
@@ -187,7 +187,7 @@ namespace TcpPullServer
             return HandleResult.Ok;
         }
 
-        HandleResult OnReceive(TcpServer sender, IntPtr connId, int length)
+        HandleResult OnReceive(IServer sender, IntPtr connId, int length)
         {
             // 数据到达了
             // clientInfo 就是accept里传入的附加数据了
@@ -278,7 +278,7 @@ namespace TcpPullServer
             return HandleResult.Ok;
         }
 
-        HandleResult OnClose(TcpServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
+        HandleResult OnClose(IServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
         {
             if(errorCode == 0)
                 // 客户离开了
@@ -297,7 +297,7 @@ namespace TcpPullServer
             return HandleResult.Ok;
         }
 
-        HandleResult OnShutdown(TcpServer sender)
+        HandleResult OnShutdown(IServer sender)
         {
             // 服务关闭了
 

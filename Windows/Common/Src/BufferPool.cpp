@@ -30,20 +30,19 @@ Desc:
 
 #include "stdafx.h"
 #include "BufferPool.h"
-#include "SysHelper.h"
 #include "WaitFor.h"
 
 #pragma warning(push)
 #pragma warning(disable: 4458)
 
-const DWORD TItem::DEFAULT_ITEM_CAPACITY			= ::SysGetPageSize();
+const DWORD TItem::DEFAULT_ITEM_CAPACITY			= DEFAULT_BUFFER_CACHE_CAPACITY;
 const DWORD CBufferPool::DEFAULT_MAX_CACHE_SIZE		= 0;
 const DWORD CBufferPool::DEFAULT_ITEM_CAPACITY		= CItemPool::DEFAULT_ITEM_CAPACITY;
 const DWORD CBufferPool::DEFAULT_ITEM_POOL_SIZE		= CItemPool::DEFAULT_POOL_SIZE;
 const DWORD CBufferPool::DEFAULT_ITEM_POOL_HOLD		= CItemPool::DEFAULT_POOL_HOLD;
-const DWORD CBufferPool::DEFAULT_BUFFER_LOCK_TIME	= 15 * 1000;
-const DWORD CBufferPool::DEFAULT_BUFFER_POOL_SIZE	= 600;
-const DWORD CBufferPool::DEFAULT_BUFFER_POOL_HOLD	= 600;
+const DWORD CBufferPool::DEFAULT_BUFFER_LOCK_TIME	= DEFAULT_OBJECT_CACHE_LOCK_TIME;
+const DWORD CBufferPool::DEFAULT_BUFFER_POOL_SIZE	= DEFAULT_OBJECT_CACHE_POOL_SIZE;
+const DWORD CBufferPool::DEFAULT_BUFFER_POOL_HOLD	= DEFAULT_OBJECT_CACHE_POOL_HOLD;
 
 TItem* TItem::Construct(CPrivateHeap& heap, int capacity, BYTE* pData, int length)
 {

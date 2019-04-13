@@ -10,18 +10,7 @@ using System.Runtime.Serialization;
 
 namespace HPSocketCS
 {
-    public class TcpServerEvent
-    {
-        public delegate HandleResult OnSendEventHandler(TcpServer sender, IntPtr connId, byte[] bytes);
-        public delegate HandleResult OnReceiveEventHandler(TcpServer sender, IntPtr connId, byte[] bytes);
-        public delegate HandleResult OnPointerDataReceiveEventHandler(TcpServer sender, IntPtr connId, IntPtr pData, int length);
-        public delegate HandleResult OnCloseEventHandler(TcpServer sender, IntPtr connId, SocketOperation enOperation, int errorCode);
-        public delegate HandleResult OnShutdownEventHandler(TcpServer sender);
-        public delegate HandleResult OnPrepareListenEventHandler(TcpServer sender, IntPtr soListen);
-        public delegate HandleResult OnAcceptEventHandler(TcpServer sender, IntPtr connId, IntPtr pClient);
-        public delegate HandleResult OnHandShakeEventHandler(TcpServer sender, IntPtr connId);
-    }
-
+    
     public class TcpServer<T> : TcpServer
     {
         public new T GetExtra(IntPtr connId)
@@ -35,22 +24,9 @@ namespace HPSocketCS
         }
     }
 
-    public class TcpServer : ConnectionExtra
+    public class TcpServer :  ConnectionExtra, IServer
     {
-        protected IntPtr _pServer = IntPtr.Zero;
-        protected IntPtr pServer
-        {
-            get
-            {
-                return _pServer;
-            }
-
-            set
-            {
-                _pServer = value;
-            }
-        }
-
+        protected IntPtr pServer = IntPtr.Zero;
         protected IntPtr pListener = IntPtr.Zero;
 
         /// <summary>
@@ -66,50 +42,39 @@ namespace HPSocketCS
         /// <summary>
         /// 连接到达事件
         /// </summary>
-        public event TcpServerEvent.OnAcceptEventHandler OnAccept;
+        public event ServerEvent.OnAcceptEventHandler OnAccept;
         /// <summary>
         /// 数据包发送事件
         /// </summary>
-        public event TcpServerEvent.OnSendEventHandler OnSend;
+        public event ServerEvent.OnSendEventHandler OnSend;
         /// <summary>
         /// 准备监听了事件
         /// </summary>
-        public event TcpServerEvent.OnPrepareListenEventHandler OnPrepareListen;
+        public event ServerEvent.OnPrepareListenEventHandler OnPrepareListen;
         /// <summary>
         /// 数据到达事件
         /// </summary>
-        public event TcpServerEvent.OnReceiveEventHandler OnReceive;
+        public event ServerEvent.OnReceiveEventHandler OnReceive;
         /// <summary>
         /// 数据到达事件(指针数据)
         /// </summary>
-        public event TcpServerEvent.OnPointerDataReceiveEventHandler OnPointerDataReceive;
+        public event ServerEvent.OnPointerDataReceiveEventHandler OnPointerDataReceive;
         /// <summary>
         /// 连接关闭事件
         /// </summary>
-        public event TcpServerEvent.OnCloseEventHandler OnClose;
+        public event ServerEvent.OnCloseEventHandler OnClose;
         /// <summary>
         /// 服务器关闭事件
         /// </summary>
-        public event TcpServerEvent.OnShutdownEventHandler OnShutdown;
+        public event ServerEvent.OnShutdownEventHandler OnShutdown;
         /// <summary>
         /// 握手成功事件
         /// </summary>
-        public event TcpServerEvent.OnHandShakeEventHandler OnHandShake;
+        public event ServerEvent.OnHandShakeEventHandler OnHandShake;
 
         protected bool IsCreate = false;
 
-        public IntPtr Sender
-        {
-            get
-            {
-                return pServer;
-            }
-        }
 
-
-        /// <summary>
-        /// tcpserver构造
-        /// </summary>
         public TcpServer()
         {
             CreateListener();
@@ -172,8 +137,6 @@ namespace HPSocketCS
         /// <summary>
         /// 启动服务
         /// </summary>
-        /// <param name="address"></param>
-        /// <param name="port"></param>
         /// <returns></returns>
         public bool Start()
         {
@@ -256,31 +219,6 @@ namespace HPSocketCS
             return Sdk.HP_Server_SendPart(pServer, connId, bufferPtr, size, offset);
         }
 
-        /// <summary>
-        /// 发送数据
-        /// </summary>
-        /// <param name="connId"></param>
-        /// <param name="bufferPtr"></param>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        public bool Send<T>(IntPtr connId, T obj)
-        {
-            byte[] buffer = StructureToByte<T>(obj);
-            return Send(connId, buffer, buffer.Length);
-        }
-
-        /// <summary>
-        /// 序列化对象后发送数据,序列化对象所属类必须标记[Serializable]
-        /// </summary>
-        /// <param name="connId"></param>
-        /// <param name="bufferPtr"></param>
-        /// <param name="size"></param>
-        /// <returns></returns>
-        public bool SendBySerializable(IntPtr connId, object obj)
-        {
-            byte[] buffer = ObjectToBytes(obj);
-            return Send(connId, buffer, buffer.Length);
-        }
 
         /// <summary>
         /// 发送多组数据
@@ -289,7 +227,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="connId">连接 ID</param>
         /// <param name="pBuffers">发送缓冲区数组</param>
-        /// <param name="iCount">发送缓冲区数目</param>
+        /// <param name="count">发送缓冲区数目</param>
         /// <returns>TRUE.成功,FALSE.失败，可通过 SYSGetLastError() 获取 Windows 错误代码</returns>
         public bool SendPackets(IntPtr connId, WSABUF[] pBuffers, int count)
         {
@@ -302,8 +240,7 @@ namespace HPSocketCS
         /// TCP - 顺序发送所有数据包
         /// </summary>
         /// <param name="connId">连接 ID</param>
-        /// <param name="pBuffers">发送缓冲区数组</param>
-        /// <param name="iCount">发送缓冲区数目</param>
+        /// <param name="objects">发送缓冲区数组</param>
         /// <returns>TRUE.成功,FALSE.失败，可通过 SYSGetLastError() 获取 Windows 错误代码</returns>
         public bool SendPackets<T>(IntPtr connId, T[] objects)
         {
@@ -331,11 +268,11 @@ namespace HPSocketCS
             }
             finally
             {
-                for (int i = 0; i < ptrs.Length; i++)
+                foreach (var ptr in ptrs)
                 {
-                    if (ptrs[i] != IntPtr.Zero)
+                    if (ptr != IntPtr.Zero)
                     {
-                        Marshal.FreeHGlobal(ptrs[i]);
+                        Marshal.FreeHGlobal(ptr);
                     }
                 }
             }
@@ -417,7 +354,7 @@ namespace HPSocketCS
         /// 断开与某个客户的连接
         /// </summary>
         /// <param name="connId"></param>
-        /// <param name="bForce">是否强制断开</param>
+        /// <param name="force">是否强制断开</param>
         /// <returns></returns>
         public bool Disconnect(IntPtr connId, bool force = true)
         {
@@ -537,74 +474,6 @@ namespace HPSocketCS
         {
             return Sdk.HP_Server_GetPendingDataLength(pServer, connId, ref length);
         }
-
-        ///// <summary>
-        ///// 设置连接的附加数据
-        ///// </summary>
-        ///// <param name="connId"></param>
-        ///// <param name="obj">如果为null,则为释放设置的数据</param>
-        ///// <returns></returns>
-        //public bool SetConnectionExtra(IntPtr connId, object obj)
-        //{
-
-        //    IntPtr ptr = IntPtr.Zero;
-        //    // 释放附加数据
-        //    if (Sdk.HP_Server_GetConnectionExtra(pServer, connId, ref ptr) && ptr != IntPtr.Zero)
-        //    {
-        //        Marshal.FreeHGlobal(ptr);
-        //        ptr = IntPtr.Zero;
-        //    }
-
-        //    if (obj != null)
-        //    {
-        //        // 设置附加数据
-        //        ptr = Marshal.AllocHGlobal(Marshal.SizeOf(obj));
-        //        Marshal.StructureToPtr(obj, ptr, false);
-        //    }
-
-        //    return Sdk.HP_Server_SetConnectionExtra(pServer, connId, ptr);
-        //}
-
-        ///// <summary>
-        ///// 获取附加数据
-        ///// 如设置的是个结构体/类对象,可以用 Type objA = (Type)Marshal.PtrToStructure(ptr, typeof(Type)) 获取
-        ///// 其中Type是结构体/类名,ptr是该方法的传出值,在该方法返回为true的时候可用
-        ///// </summary>
-        ///// <param name="connId"></param>
-        ///// <param name="ptr"></param>
-        ///// <returns></returns>
-        //[Obsolete("该非泛型方法已过期,推荐使用泛型方法: T GetConnectionExtra<T>(IntPtr connId)")]
-        //public bool GetConnectionExtra(IntPtr connId, ref IntPtr ptr)
-        //{
-        //    return Sdk.HP_Server_GetConnectionExtra(pServer, connId, ref ptr) && ptr != IntPtr.Zero;
-        //}
-
-        ///// <summary>
-        ///// 获取附加数据
-        ///// 成功时返回对象,失败时返回T类型默认值,如:int=0, classA=null
-        ///// </summary>
-        ///// <param name="connId"></param>
-        ///// <returns></returns>
-        //public T GetConnectionExtra<T>(IntPtr connId)
-        //{
-        //    IntPtr ptr = IntPtr.Zero;
-        //    T obj = default(T);
-        //    if (Sdk.HP_Server_GetConnectionExtra(pServer, connId, ref ptr))
-        //    {
-        //        obj = (T)Marshal.PtrToStructure(ptr, typeof(T));
-        //    }
-        //    return obj;
-        //}
-
-        ///// <summary>
-        ///// 移除连接中的附加数据, 同SetConnectionExtra(id, null)
-        ///// </summary>
-        ///// <param name="connId"></param>
-        ///// <returns></returns>
-        //public bool RemoveConnectionExtra(IntPtr connId)
-        //{
-        //    return SetConnectionExtra(connId, null);
-        //}
 
         // 是否启动
         public bool IsStarted
@@ -1003,7 +872,7 @@ namespace HPSocketCS
             get
             {
                 IntPtr ptr = Sdk.HP_Server_GetLastErrorDesc(pServer);
-                string desc = Marshal.PtrToStringUni(ptr);
+                string desc = Marshal.PtrToStringAnsi(ptr);
                 return desc;
             }
         }
@@ -1120,7 +989,7 @@ namespace HPSocketCS
         public string GetSocketErrorDesc(SocketError code)
         {
             IntPtr ptr = Sdk.HP_GetSocketErrorDesc(code);
-            string desc = Marshal.PtrToStringUni(ptr);
+            string desc = Marshal.PtrToStringAnsi(ptr);
             return desc;
         }
 

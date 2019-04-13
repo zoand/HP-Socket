@@ -8,7 +8,7 @@ namespace HPSocketCS
 {
     public class TcpPullServerEvent
     {
-        public delegate HandleResult OnReceiveEventHandler(TcpServer sender, IntPtr connId, int length);
+        public delegate HandleResult OnReceiveEventHandler(IServer sender, IntPtr connId, int length);
     }
     public class TcpPullServer<T> : TcpPullServer
     {

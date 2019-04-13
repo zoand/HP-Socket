@@ -42,7 +42,12 @@ namespace SSLPackServerNS
             {
 
                 // 初始化ssl环境
-                server.Initialize();
+                if (!server.Initialize())
+                {
+                    SetAppState(AppState.Error);
+                    AddMsg("初始化ssl环境失败：" + Sdk.SYS_GetLastError());
+                    return;
+                }
 
                 this.Text = title;
                 // 本机测试没必要改地址,有需求请注释或删除
@@ -52,13 +57,13 @@ namespace SSLPackServerNS
                 AddMsgDelegate = new ShowMsg(AddMsg);
 
                 // 设置服务器事件
-                server.OnPrepareListen += new TcpServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
-                server.OnAccept += new TcpServerEvent.OnAcceptEventHandler(OnAccept);
-                server.OnSend += new TcpServerEvent.OnSendEventHandler(OnSend);
-                server.OnReceive += new TcpServerEvent.OnReceiveEventHandler(OnReceive);
-                server.OnClose += new TcpServerEvent.OnCloseEventHandler(OnClose);
-                server.OnShutdown += new TcpServerEvent.OnShutdownEventHandler(OnShutdown);
-                server.OnHandShake += new TcpServerEvent.OnHandShakeEventHandler(OnHandShake);
+                server.OnPrepareListen += new ServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
+                server.OnAccept += new ServerEvent.OnAcceptEventHandler(OnAccept);
+                server.OnSend += new ServerEvent.OnSendEventHandler(OnSend);
+                server.OnReceive += new ServerEvent.OnReceiveEventHandler(OnReceive);
+                server.OnClose += new ServerEvent.OnCloseEventHandler(OnClose);
+                server.OnShutdown += new ServerEvent.OnShutdownEventHandler(OnShutdown);
+                server.OnHandShake += new ServerEvent.OnHandShakeEventHandler(OnHandShake);
 
                 // 设置包头标识,与对端设置保证一致性
                 server.PackHeaderFlag = 0xff;
@@ -143,14 +148,14 @@ namespace SSLPackServerNS
         }
 
 
-        HandleResult OnPrepareListen(TcpServer sender, IntPtr soListen)
+        HandleResult OnPrepareListen(IServer sender, IntPtr soListen)
         {
             // 监听事件到达了,一般没什么用吧?
 
             return HandleResult.Ok;
         }
 
-        HandleResult OnAccept(TcpServer sender, IntPtr connId, IntPtr pClient)
+        HandleResult OnAccept(IServer sender, IntPtr connId, IntPtr pClient)
         {
             // 客户进入了
 
@@ -181,7 +186,7 @@ namespace SSLPackServerNS
             return HandleResult.Ok;
         }
 
-        HandleResult OnSend(TcpServer sender, IntPtr connId, byte[] bytes)
+        HandleResult OnSend(IServer sender, IntPtr connId, byte[] bytes)
         {
             // 服务器发数据了
 
@@ -191,7 +196,7 @@ namespace SSLPackServerNS
             return HandleResult.Ok;
         }
 
-        HandleResult OnReceive(TcpServer sender, IntPtr connId, byte[] bytes)
+        HandleResult OnReceive(IServer sender, IntPtr connId, byte[] bytes)
         {
             // 数据到达了
             try
@@ -222,7 +227,7 @@ namespace SSLPackServerNS
             }
         }
 
-        HandleResult OnClose(TcpServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
+        HandleResult OnClose(IServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
         {
             if(errorCode == 0)
                 AddMsg(string.Format(" > [{0},OnClose]", connId));
@@ -238,7 +243,7 @@ namespace SSLPackServerNS
             return HandleResult.Ok;
         }
 
-        HandleResult OnShutdown(TcpServer sender)
+        HandleResult OnShutdown(IServer sender)
         {
             // 服务关闭了
 
@@ -248,7 +253,7 @@ namespace SSLPackServerNS
         }
 
 
-        HandleResult OnHandShake(TcpServer sender, IntPtr connId)
+        HandleResult OnHandShake(IServer sender, IntPtr connId)
         {
             // 握手了
             AddMsg(string.Format(" > [{0},OnHandShake])", connId));

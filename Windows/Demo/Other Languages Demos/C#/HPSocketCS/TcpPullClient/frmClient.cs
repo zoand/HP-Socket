@@ -48,11 +48,11 @@ namespace TcpPullClientNS
                 pkgInfo.Length = pkgHeaderSize;
 
                 // 设置client事件
-                client.OnPrepareConnect += new TcpClientEvent.OnPrepareConnectEventHandler(OnPrepareConnect);
-                client.OnConnect += new TcpClientEvent.OnConnectEventHandler(OnConnect);
-                client.OnSend += new TcpClientEvent.OnSendEventHandler(OnSend);
+                client.OnPrepareConnect += new ClientEvent.OnPrepareConnectEventHandler(OnPrepareConnect);
+                client.OnConnect += new ClientEvent.OnConnectEventHandler(OnConnect);
+                client.OnSend += new ClientEvent.OnSendEventHandler(OnSend);
                 client.OnReceive += new TcpPullClientEvent.OnReceiveEventHandler(OnReceive);
-                client.OnClose += new TcpClientEvent.OnCloseEventHandler(OnClose);
+                client.OnClose += new ClientEvent.OnCloseEventHandler(OnClose);
                 
                 SetAppState(AppState.Stoped);
             }
@@ -178,27 +178,27 @@ namespace TcpPullClientNS
             }
         }
 
-        HandleResult OnPrepareConnect(TcpClient sender, IntPtr socket)
+        HandleResult OnPrepareConnect(IClient sender, IntPtr socket)
         {
             return HandleResult.Ok;
         }
 
-        HandleResult OnConnect(TcpClient sender)
+        HandleResult OnConnect(IClient sender)
         {
             // 已连接 到达一次
             // 如果是异步联接,更新界面状态
 
             this.Invoke(new ConnectUpdateUiDelegate(ConnectUpdateUi));
 
-            AddMsg(string.Format(" > [{0},OnConnect]", sender.ConnectionId));
+            AddMsg(string.Format(" > [{0},OnConnect]", client.ConnectionId));
 
             return HandleResult.Ok;
         }
 
-        HandleResult OnSend(TcpClient sender, byte[] bytes)
+        HandleResult OnSend(IClient sender, byte[] bytes)
         {
             // 客户端发数据了
-            AddMsg(string.Format(" > [{0},OnSend] -> ({1} bytes)", sender.ConnectionId, bytes.Length));
+            AddMsg(string.Format(" > [{0},OnSend] -> ({1} bytes)", client.ConnectionId, bytes.Length));
 
             return HandleResult.Ok;
         }
@@ -264,14 +264,14 @@ namespace TcpPullClientNS
             return HandleResult.Ok;
         }
 
-        HandleResult OnClose(TcpClient sender, SocketOperation enOperation, int errorCode)
+        HandleResult OnClose(IClient sender, SocketOperation enOperation, int errorCode)
         {
             if(errorCode == 0)
                 // 连接关闭了
-                AddMsg(string.Format(" > [{0},OnClose]", sender.ConnectionId));
+                AddMsg(string.Format(" > [{0},OnClose]", client.ConnectionId));
             else
                 // 出错了
-                AddMsg(string.Format(" > [{0},OnError] -> OP:{1},CODE:{2}", sender.ConnectionId, enOperation, errorCode));
+                AddMsg(string.Format(" > [{0},OnError] -> OP:{1},CODE:{2}", client.ConnectionId, enOperation, errorCode));
 
             // 通知界面,只处理了连接错误,也没进行是不是连接错误的判断,所以有错误就会设置界面
             // 生产环境请自己控制

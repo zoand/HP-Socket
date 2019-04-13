@@ -45,12 +45,12 @@ namespace TcpPortForwarding
         public TcpPortForwarding()
         {
             // 设置服务器事件
-            server.OnPrepareListen += new TcpServerEvent.OnPrepareListenEventHandler(OnServerPrepareListen);
-            server.OnAccept += new TcpServerEvent.OnAcceptEventHandler(OnServerAccept);
-            server.OnSend += new TcpServerEvent.OnSendEventHandler(OnServerSend);
-            server.OnReceive += new TcpServerEvent.OnReceiveEventHandler(OnServerReceive);
-            server.OnClose += new TcpServerEvent.OnCloseEventHandler(OnServerClose);
-            server.OnShutdown += new TcpServerEvent.OnShutdownEventHandler(OnServerShutdown);
+            server.OnPrepareListen += new ServerEvent.OnPrepareListenEventHandler(OnServerPrepareListen);
+            server.OnAccept += new ServerEvent.OnAcceptEventHandler(OnServerAccept);
+            server.OnSend += new ServerEvent.OnSendEventHandler(OnServerSend);
+            server.OnReceive += new ServerEvent.OnReceiveEventHandler(OnServerReceive);
+            server.OnClose += new ServerEvent.OnCloseEventHandler(OnServerClose);
+            server.OnShutdown += new ServerEvent.OnShutdownEventHandler(OnServerShutdown);
 
 
             // 设置代理事件
@@ -221,7 +221,7 @@ namespace TcpPortForwarding
         /// </summary>
         /// <param name="soListen"></param>
         /// <returns></returns>
-        protected virtual HandleResult OnServerPrepareListen(TcpServer sender, IntPtr soListen)
+        protected virtual HandleResult OnServerPrepareListen(IServer sender, IntPtr soListen)
         {
             return HandleResult.Ok;
         }
@@ -232,7 +232,7 @@ namespace TcpPortForwarding
         /// <param name="connId"></param>
         /// <param name="pClient"></param>
         /// <returns></returns>
-        protected virtual HandleResult OnServerAccept(TcpServer sender, IntPtr connId, IntPtr pClient)
+        protected virtual HandleResult OnServerAccept(IServer sender, IntPtr connId, IntPtr pClient)
         {
             // 获取客户端ip和端口
             string ip = string.Empty;
@@ -293,7 +293,7 @@ namespace TcpPortForwarding
         /// <param name="pData"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        protected virtual HandleResult OnServerSend(TcpServer sender, IntPtr connId, byte[] bytes)
+        protected virtual HandleResult OnServerSend(IServer sender, IntPtr connId, byte[] bytes)
         {
             AddMsg(string.Format(" > [Server->OnServerSend] -> ({0} bytes)", bytes.Length));
             return HandleResult.Ok;
@@ -306,7 +306,7 @@ namespace TcpPortForwarding
         /// <param name="pData"></param>
         /// <param name="length"></param>
         /// <returns></returns>
-        protected virtual HandleResult OnServerReceive(TcpServer sender, IntPtr connId, byte[] bytes)
+        protected virtual HandleResult OnServerReceive(IServer sender, IntPtr connId, byte[] bytes)
         {
             try
             {
@@ -343,7 +343,7 @@ namespace TcpPortForwarding
         /// <param name="enOperation"></param>
         /// <param name="errorCode"></param>
         /// <returns></returns>
-        protected virtual HandleResult OnServerClose(TcpServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
+        protected virtual HandleResult OnServerClose(IServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
         {
             if (errorCode == 0)
                 AddMsg(string.Format(" > [{0},OnServerClose]", connId));
@@ -375,7 +375,7 @@ namespace TcpPortForwarding
         /// 服务关闭了
         /// </summary>
         /// <returns></returns>
-        protected virtual HandleResult OnServerShutdown(TcpServer sender)
+        protected virtual HandleResult OnServerShutdown(IServer sender)
         {
             AddMsg(" > [OnServerShutdown]");
             return HandleResult.Ok;

@@ -133,11 +133,11 @@ namespace TcpClient_PFM
                     TcpClient client = new TcpClient();
 
                     // 设置client事件
-                    client.OnPrepareConnect += new TcpClientEvent.OnPrepareConnectEventHandler(OnPrepareConnect);
-                    client.OnConnect += new TcpClientEvent.OnConnectEventHandler(OnConnect);
-                    client.OnSend += new TcpClientEvent.OnSendEventHandler(OnSend);
-                    client.OnReceive += new TcpClientEvent.OnReceiveEventHandler(OnReceive);
-                    client.OnClose += new TcpClientEvent.OnCloseEventHandler(OnClose);
+                    client.OnPrepareConnect += new ClientEvent.OnPrepareConnectEventHandler(OnPrepareConnect);
+                    client.OnConnect += new ClientEvent.OnConnectEventHandler(OnConnect);
+                    client.OnSend += new ClientEvent.OnSendEventHandler(OnSend);
+                    client.OnReceive += new ClientEvent.OnReceiveEventHandler(OnReceive);
+                    client.OnClose += new ClientEvent.OnCloseEventHandler(OnClose);
 
                     if (client.Connect(address, port) == true)
                     {
@@ -251,26 +251,27 @@ namespace TcpClient_PFM
             SetAppState(AppState.Stoped);
         }
 
-        HandleResult OnPrepareConnect(TcpClient sender, IntPtr socket)
+        HandleResult OnPrepareConnect(IClient sender, IntPtr socket)
         {
             return HandleResult.Ok;
         }
 
-        HandleResult OnConnect(TcpClient sender)
+        HandleResult OnConnect(IClient sender)
         {
+            var client = sender as TcpClient;
             // 已连接 到达一次
-            AddMsg(string.Format(" > [{0}, OnConnect]", sender.ConnectionId));
+            AddMsg(string.Format(" > [{0}, OnConnect]", client.ConnectionId));
             return HandleResult.Ok;
         }
 
-        HandleResult OnSend(TcpClient sender, byte[] bytes)
+        HandleResult OnSend(IClient sender, byte[] bytes)
         {
             // 客户端发数据了
             Interlocked.Add(ref TotalSent, bytes.Length);
             return HandleResult.Ok;
         }
 
-        HandleResult OnReceive(TcpClient sender, byte[] bytes)
+        HandleResult OnReceive(IClient sender, byte[] bytes)
         {
             // 数据到达了
 
@@ -285,7 +286,7 @@ namespace TcpClient_PFM
             return HandleResult.Ok;
         }
 
-        HandleResult OnClose(TcpClient sender, SocketOperation enOperation, int errorCode)
+        HandleResult OnClose(IClient sender, SocketOperation enOperation, int errorCode)
         {
             // 连接关闭了
             return HandleResult.Ok;

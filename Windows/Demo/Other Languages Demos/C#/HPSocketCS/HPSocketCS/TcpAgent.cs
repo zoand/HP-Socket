@@ -644,7 +644,7 @@ namespace HPSocketCS
             get
             {
                 IntPtr ptr = Sdk.HP_Agent_GetLastErrorDesc(pAgent);
-                string desc = Marshal.PtrToStringUni(ptr);
+                string desc = Marshal.PtrToStringAnsi(ptr);
                 return desc;
             }
         }
@@ -1037,7 +1037,7 @@ namespace HPSocketCS
         public string GetSocketErrorDesc(SocketError code)
         {
             IntPtr ptr = Sdk.HP_GetSocketErrorDesc(code);
-            string desc = Marshal.PtrToStringUni(ptr);
+            string desc = Marshal.PtrToStringAnsi(ptr);
             return desc;
         }
 

@@ -117,14 +117,14 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pThreadPool"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_ThreadPool();
 
         /// <summary>
         /// 销毁 IHPThreadPool 对象
         /// </summary>
         /// <param name="pThreadPool"></param>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_ThreadPool(IntPtr pThreadPool);
 
 
@@ -141,7 +141,7 @@ namespace HPSocketCS
         /// <param name="wParam">自定义参数</param>
         /// <param name="lParam">自定义参数</param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_SocketTaskObj(SocketTaskProc fnTaskProc, IntPtr pSender, IntPtr dwConnID, byte[] pBuffer, int iBuffLen, TaskBufferType enBuffType /*= TBT_COPY*/, IntPtr wParam /*= 0*/, IntPtr lParam /*= 0*/);
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pTask"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_SocketTaskObj(IntPtr pTask);
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace HPSocketCS
         /// <param name="dwStackSize">线程堆栈空间大小（默认：0 -> 操作系统默认）</param>
         /// <returns>  TRUE	-- 成功 ,  FALSE	-- 失败，可通过 SYS_GetLastError() 获取系统错误代码
         /// </returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_ThreadPool_Start(IntPtr pThreadPool, uint dwThreadCount /*= 0*/, uint dwMaxQueueSize /*= 0*/, RejectedPolicy enRejectedPolicy /*= TRP_CALL_FAIL*/, uint dwStackSize /*= 0*/);
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace HPSocketCS
         /// <param name="dwMaxWait">最大等待时间（毫秒，默认：INFINITE，一直等待）</param>
         /// <returns> TRUE	-- 成功,   FALSE	-- 失败，可通过 SYS_GetLastError() 获取系统错误代码
         /// </returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_ThreadPool_Stop(IntPtr pThreadPool, int dwMaxWait /*= INFINITE*/);
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace HPSocketCS
         /// <param name="pvArg">任务参数</param>
         /// <param name="dwMaxWait">任务提交最大等待时间（仅对 TRP_WAIT_FOR 类型线程池生效，默认：INFINITE，一直等待）</param>
         /// <returns>TRUE	-- 成功,   FALSE	-- 失败，可通过 SYS_GetLastError() 获取系统错误代码， 其中，错误码 ERROR_DESTINATION_ELEMENT_FULL 表示任务队列已满 </returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_ThreadPool_Submit(IntPtr pThreadPool, TaskProc fnTaskProc, IntPtr pvArg, int dwMaxWait /*= INFINITE*/);
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace HPSocketCS
         /// <param name="pTask">任务参数 HP_LPTSocketTask</param>
         /// <param name="dwMaxWait">任务提交最大等待时间（仅对 TRP_WAIT_FOR 类型线程池生效，默认：INFINITE，一直等待）</param>
         /// <returns>TRUE	-- 成功,   FALSE	-- 失败，可通过 SYS_GetLastError() 获取系统错误代码其中，错误码 ERROR_DESTINATION_ELEMENT_FULL 表示任务队列已满</returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_ThreadPool_Submit_Task(IntPtr pThreadPool, IntPtr pTask, int dwMaxWait /*= INFINITE*/);
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace HPSocketCS
         /// <param name="pThreadPool"></param>
         /// <param name="dwNewThreadCount">线程数量</param>
         /// <returns>TRUE	-- 成功,  FALSE	-- 失败，可通过 SYS_GetLastError() 获取系统错误代码</returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_ThreadPool_AdjustThreadCount(IntPtr pThreadPool, int dwNewThreadCount);
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pThreadPool"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_ThreadPool_HasStarted(IntPtr pThreadPool);
 
 
@@ -223,7 +223,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pThreadPool"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ServiceState HP_ThreadPool_GetState(IntPtr pThreadPool);
 
 
@@ -232,7 +232,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pThreadPool"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern uint HP_ThreadPool_GetQueueSize(IntPtr pThreadPool);
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pThreadPool"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern int HP_ThreadPool_GetThreadCount(IntPtr pThreadPool);
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pThreadPool"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern uint HP_ThreadPool_GetMaxQueueSize(IntPtr pThreadPool);
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pThreadPool"></param>
         /// <returns></returns>
-        [DllImport(Sdk.HPSOCKET_DLL_PATH)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern RejectedPolicy HP_ThreadPool_GetRejectedPolicy(IntPtr pThreadPool);
     }
 }

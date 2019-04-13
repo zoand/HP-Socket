@@ -30,7 +30,7 @@ namespace HPSocketCS
         /// 
         /// </summary>
         /// <param name="key"></param>
-        /// <param name="value"></param>
+        /// <param name="newValue"></param>
         /// <returns></returns>
         public bool Set(IntPtr key, T newValue)
         {

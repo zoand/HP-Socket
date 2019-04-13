@@ -47,16 +47,16 @@ namespace SSLServerNS
 
 
                 // 设置服务器事件
-                server.OnPrepareListen += new TcpServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
-                server.OnAccept += new TcpServerEvent.OnAcceptEventHandler(OnAccept);
-                server.OnSend += new TcpServerEvent.OnSendEventHandler(OnSend);
+                server.OnPrepareListen += new ServerEvent.OnPrepareListenEventHandler(OnPrepareListen);
+                server.OnAccept += new ServerEvent.OnAcceptEventHandler(OnAccept);
+                server.OnSend += new ServerEvent.OnSendEventHandler(OnSend);
                 // 两个数据到达事件的一种
-                server.OnPointerDataReceive += new TcpServerEvent.OnPointerDataReceiveEventHandler(OnPointerDataReceive);
+                server.OnPointerDataReceive += new ServerEvent.OnPointerDataReceiveEventHandler(OnPointerDataReceive);
                 // 两个数据到达事件的一种
-                //server.OnReceive += new TcpServerEvent.OnReceiveEventHandler(OnReceive);
+                //server.OnReceive += new ServerEvent.OnReceiveEventHandler(OnReceive);
 
-                server.OnClose += new TcpServerEvent.OnCloseEventHandler(OnClose);
-                server.OnShutdown += new TcpServerEvent.OnShutdownEventHandler(OnShutdown);
+                server.OnClose += new ServerEvent.OnCloseEventHandler(OnClose);
+                server.OnShutdown += new ServerEvent.OnShutdownEventHandler(OnShutdown);
 
                 SetAppState(AppState.Stoped);
 
@@ -138,14 +138,14 @@ namespace SSLServerNS
         }
 
 
-        HandleResult OnPrepareListen(HPSocketCS.TcpServer sender, IntPtr soListen)
+        HandleResult OnPrepareListen(IServer sender, IntPtr soListen)
         {
             // 监听事件到达了,一般没什么用吧?
 
             return HandleResult.Ok;
         }
 
-        HandleResult OnAccept(HPSocketCS.TcpServer sender, IntPtr connId, IntPtr pClient)
+        HandleResult OnAccept(IServer sender, IntPtr connId, IntPtr pClient)
         {
             // 客户进入了
 
@@ -176,7 +176,7 @@ namespace SSLServerNS
             return HandleResult.Ok;
         }
 
-        HandleResult OnSend(HPSocketCS.TcpServer sender, IntPtr connId, byte[] bytes)
+        HandleResult OnSend(IServer sender, IntPtr connId, byte[] bytes)
         {
             // 服务器发数据了
 
@@ -187,7 +187,7 @@ namespace SSLServerNS
         }
 
 
-        HandleResult OnPointerDataReceive(HPSocketCS.TcpServer sender, IntPtr connId, IntPtr pData, int length)
+        HandleResult OnPointerDataReceive(IServer sender, IntPtr connId, IntPtr pData, int length)
         {
             // 数据到达了
             try
@@ -222,7 +222,7 @@ namespace SSLServerNS
                 return HandleResult.Ignore;
             }
         }
-        HandleResult OnReceive(HPSocketCS.TcpServer sender, IntPtr connId, byte[] bytes)
+        HandleResult OnReceive(IServer sender, IntPtr connId, byte[] bytes)
         {
             // 数据到达了
             try
@@ -253,7 +253,7 @@ namespace SSLServerNS
             }
         }
 
-        HandleResult OnClose(HPSocketCS.TcpServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
+        HandleResult OnClose(IServer sender, IntPtr connId, SocketOperation enOperation, int errorCode)
         {
             if (errorCode == 0)
                 AddMsg(string.Format(" > [{0},OnClose]", connId));
@@ -268,7 +268,7 @@ namespace SSLServerNS
             return HandleResult.Ok;
         }
 
-        HandleResult OnShutdown(HPSocketCS.TcpServer sender)
+        HandleResult OnShutdown(IServer sender)
         {
             // 服务关闭了
 

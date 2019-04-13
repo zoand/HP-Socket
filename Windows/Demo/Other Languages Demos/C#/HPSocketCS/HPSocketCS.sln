@@ -37,7 +37,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsocketClient", "Websocke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadPoolDemo", "ThreadPoolDemo\ThreadPoolDemo.csproj", "{EE9287B0-F062-4A31-A2CB-B7FBCC6B818A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HPSocketCS", "HPSocketCS\HPSocketCS.csproj", "{19930784-1BCB-48EC-9118-1B57AB82FAAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HPSocketCS", "HPSocketCS\HPSocketCS.csproj", "{19930784-1BCB-48EC-9118-1B57AB82FAAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdpArqServer", "UdpArqServer\UdpArqServer.csproj", "{70F0A67D-B6D7-44E6-906D-8643FAF83E72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdpArqClient", "UdpArqClient\UdpArqClient.csproj", "{D39B80FA-F538-490F-839F-9186CAFED88C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,6 +195,22 @@ Global
 		{19930784-1BCB-48EC-9118-1B57AB82FAAD}.Release|x64.Build.0 = Release|x64
 		{19930784-1BCB-48EC-9118-1B57AB82FAAD}.Release|x86.ActiveCfg = Release|x86
 		{19930784-1BCB-48EC-9118-1B57AB82FAAD}.Release|x86.Build.0 = Release|x86
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Debug|x64.ActiveCfg = Debug|x64
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Debug|x64.Build.0 = Debug|x64
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Debug|x86.ActiveCfg = Debug|x86
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Debug|x86.Build.0 = Debug|x86
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Release|x64.ActiveCfg = Release|x64
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Release|x64.Build.0 = Release|x64
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Release|x86.ActiveCfg = Release|x86
+		{70F0A67D-B6D7-44E6-906D-8643FAF83E72}.Release|x86.Build.0 = Release|x86
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Debug|x64.ActiveCfg = Debug|x64
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Debug|x64.Build.0 = Debug|x64
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Debug|x86.ActiveCfg = Debug|x86
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Debug|x86.Build.0 = Debug|x86
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Release|x64.ActiveCfg = Release|x64
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Release|x64.Build.0 = Release|x64
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Release|x86.ActiveCfg = Release|x86
+		{D39B80FA-F538-490F-839F-9186CAFED88C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
