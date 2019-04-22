@@ -280,6 +280,7 @@ static const uint8_t normal_url_char[32] = {
 
 #undef T
 
+
 #define PARSING_HEADER(state) (state <= s_headers_done)
 
 
@@ -1178,9 +1179,9 @@ reexecute:
 
           switch (parser->header_state) {
             case h_general: {
-              size_t limit = data + len - p;
-              limit = MIN(limit, max_header_size);
-              while (p+1 < data + limit && TOKEN(p[1])) {
+              size_t left = data + len - p;
+              const char* pe = p + MIN(left, max_header_size);
+              while (p+1 < pe && TOKEN(p[1])) {
                 p++;
               }
               break;
@@ -1418,9 +1419,10 @@ reexecute:
           switch (h_state) {
             case h_general:
               {
-                const char* limit = p + MIN(data + len - p, max_header_size);
+                size_t left = data + len - p;
+                const char* pe = p + MIN(left, max_header_size);
 
-                for (; p != limit; p++) {
+                for (; p != pe; p++) {
                   ch = *p;
                   if (ch == CR || ch == LF) {
                     --p;
