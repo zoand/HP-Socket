@@ -864,7 +864,7 @@ public class Sdk
     /// <param name="pszBindAddress">监听地址</param>
     /// <param name="usPort">监听端口</param>
     /// <returns>失败，可通过 GetLastError() 获取错误代码</returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool HP_Server_Start(IntPtr pServer, string pszBindAddress, ushort usPort);
 
     /// <summary>
@@ -1490,7 +1490,7 @@ public class Sdk
     /// <param name="usPort">服务端端口</param>
     /// <param name="bAsyncConnect">是否采用异步 Connect</param>
     /// <returns>失败，可通过 HP_Client_GetLastError() 获取错误代码</returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool HP_Client_Start(IntPtr pClient, string pszRemoteAddress, ushort usPort, bool bAsyncConnect);
 
 
@@ -1503,7 +1503,7 @@ public class Sdk
     /// <param name="bAsyncConnect">是否采用异步 Connect</param>
     /// <param name="lpszBindAddress">绑定地址（默认：nullptr，TcpClient/UdpClient -> 不执行绑定操作，UdpCast 绑定 -> 0.0.0.0）</param>
     /// <returns>失败，可通过 HP_Client_GetLastError() 获取错误代码</returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool HP_Client_StartWithBindAddress(IntPtr pClient, string lpszRemoteAddress, ushort usPort, bool bAsyncConnect, string lpszBindAddress);
 
     /// <summary>
@@ -1517,7 +1517,7 @@ public class Sdk
     /// <param name="lpszBindAddress">绑定地址（默认：nullptr，TcpClient/UdpClient -> 不执行绑定操作，UdpCast 绑定 -> 0.0.0.0）</param>
     /// <param name="usLocalPort">本地端口（默认：0）</param>
     /// <returns>失败，可通过 HP_Client_GetLastError() 获取错误代码</returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool HP_Client_StartWithBindAddressAndLocalPort(IntPtr pClient, string lpszRemoteAddress, ushort usPort, bool bAsyncConnect, string lpszBindAddress, ushort usLocalPort);
 
 
@@ -1971,7 +1971,7 @@ public class Sdk
     /// <param name="pszBindAddress">监听地址</param>
     /// <param name="bAsyncConnect">是否采用异步 Connect</param>
     /// <returns>失败，可通过 GetLastError() 获取错误代码</returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool HP_Agent_Start(IntPtr pAgent, string pszBindAddress, bool bAsyncConnect);
 
     /// <summary>
@@ -2985,7 +2985,7 @@ public class Sdk
     /// <param name="lpppIPAddr"></param>
     /// <param name="piIPAddrCount"></param>
     /// <returns></returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool SYS_EnumHostIPAddresses(string lpszHost, IPAddrType enType, ref IntPtr lpppIPAddr, ref int piIPAddrCount);
 
 
@@ -3005,7 +3005,7 @@ public class Sdk
     /// </summary>
     /// <param name="lpszAddress"></param>
     /// <returns></returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern uint SYS_GetIPv4InAddr(string lpszAddress);
     */
     /// <summary>
@@ -3014,7 +3014,7 @@ public class Sdk
     /// <param name="lpszAddress"></param>
     /// <param name="penType"></param>
     /// <returns></returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool SYS_IsIPAddress(string lpszAddress, ref IPAddrType penType);
 
     /// <summary>
@@ -3025,7 +3025,7 @@ public class Sdk
     /// <param name="piIPLenth"></param>
     /// <param name="penType"></param>
     /// <returns></returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool SYS_GetIPAddress(string lpszHost, [MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszIP, ref int piIPLenth, ref IPAddrType penType);
 
     /*
@@ -3036,7 +3036,7 @@ public class Sdk
     /// <param name="lpszHost"></param>
     /// <param name="pulAddr"></param>
     /// <returns></returns>
-    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi)]
+    [DllImport(HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
     public static extern bool SYS_GetOptimalIPByHostName(string lpszHost, ref uint pulAddr);
     */
 

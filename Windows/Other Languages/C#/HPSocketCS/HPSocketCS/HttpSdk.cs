@@ -325,11 +325,6 @@ namespace HPSocketCS
 
     public class HttpSdk
     {
-        /// <summary>
-        /// HPSocket的文件路径
-        /// </summary>
-        public const string HPSOCKET_HTTP_DLL_PATH = Sdk.HPSOCKET_DLL_PATH;
-
         /****************************************************/
         /******************* HTTP 回调函数 *******************/
         /* Agent & Server & Clent */
@@ -364,21 +359,21 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pListener"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_HttpServer(IntPtr pListener);
         /// <summary>
         ///  创建 HP_HttpAgent 对象
         /// </summary>
         /// <param name="pListener"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_HttpAgent(IntPtr pListener);
         /// <summary>
         ///  创建 HP_HttpClient 对象
         /// </summary>
         /// <param name="pListener"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_HttpClient(IntPtr pListener);
 
         /// <summary>
@@ -386,7 +381,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pListener"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_HttpSyncClient(IntPtr pListener);
 
 
@@ -394,204 +389,204 @@ namespace HPSocketCS
         ///  销毁 HP_HttpServer 对象
         /// </summary>
         /// <param name="pServer"></param>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_HttpServer(IntPtr pServer);
         /// <summary>
         ///  销毁 HP_HttpAgent 对象
         /// </summary>
         /// <param name="pAgent"></param>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_HttpAgent(IntPtr pAgent);
         /// <summary>
         ///  销毁 HP_HttpClient 对象
         /// </summary>
         /// <param name="pClient"></param>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_HttpClient(IntPtr pClient);
 
         /// <summary>
         /// 销毁 HP_HttpSyncClient 对象
         /// </summary>
         /// <param name="pClient"></param>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_HttpSyncClient(IntPtr pClient);
 
         /// <summary>
         ///  创建 HP_HttpServerListener 对象
         /// </summary>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_HttpServerListener();
         /// <summary>
         ///  创建 HP_HttpAgentListener 对象
         /// </summary>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_HttpAgentListener();
         /// <summary>
         /// 创建 HP_HttpClientListener 对象
         /// </summary>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr Create_HP_HttpClientListener();
 
         /// <summary>
         ///  销毁 HP_HttpServerListener 对象
         /// </summary>
         /// <param name="pListener"></param>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_HttpServerListener(IntPtr pListener);
         /// <summary>
         ///  销毁 HP_HttpAgentListener 对象
         /// </summary>
         /// <param name="pListener"></param>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_HttpAgentListener(IntPtr pListener);
         /// <summary>
         ///  销毁 HP_HttpClientListener 对象
         /// </summary>
         /// <param name="pListener"></param>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void Destroy_HP_HttpClientListener(IntPtr pListener);
 
 
         /**********************************************************************************/
         /*************************** HTTP Server 回调函数设置方法 **************************/
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnMessageBegin(IntPtr pListener, OnMessageBegin fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnRequestLine(IntPtr pListener, OnRequestLine fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnHeader(IntPtr pListener, OnHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnHeadersComplete(IntPtr pListener, OnHeadersComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnBody(IntPtr pListener, OnBody fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnChunkHeader(IntPtr pListener, OnChunkHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnChunkComplete(IntPtr pListener, OnChunkComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnMessageComplete(IntPtr pListener, OnMessageComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnUpgrade(IntPtr pListener, OnUpgrade fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnParseError(IntPtr pListener, OnParseError fn);
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnWSMessageHeader(IntPtr pListener, OnWSMessageHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnWSMessageBody(IntPtr pListener, OnWSMessageBody fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnWSMessageComplete(IntPtr pListener, OnWSMessageComplete fn);
 
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnPrepareListen(IntPtr pListener, Sdk.OnPrepareListen fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnAccept(IntPtr pListener, Sdk.OnAccept fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnHandShake(IntPtr pListener, Sdk.OnHandShake fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnReceive(IntPtr pListener, Sdk.OnReceive fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnSend(IntPtr pListener, Sdk.OnSend fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnClose(IntPtr pListener, Sdk.OnClose fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpServer_OnShutdown(IntPtr pListener, Sdk.OnShutdown fn);
 
         /**********************************************************************************/
         /**************************** HTTP Agent 回调函数设置方法 **************************/
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnMessageBegin(IntPtr pListener, OnMessageBegin fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnStatusLine(IntPtr pListener, OnStatusLine fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnHeader(IntPtr pListener, OnHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnHeadersComplete(IntPtr pListener, OnHeadersComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnBody(IntPtr pListener, OnBody fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnChunkHeader(IntPtr pListener, OnChunkHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnChunkComplete(IntPtr pListener, OnChunkComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnMessageComplete(IntPtr pListener, OnMessageComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnUpgrade(IntPtr pListener, OnUpgrade fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnParseError(IntPtr pListener, OnParseError fn);
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnWSMessageHeader(IntPtr pListener, OnWSMessageHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnWSMessageBody(IntPtr pListener, OnWSMessageBody fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnWSMessageComplete(IntPtr pListener, OnWSMessageComplete fn);
 
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnPrepareConnect(IntPtr pListener, Sdk.OnPrepareConnect fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnConnect(IntPtr pListener, Sdk.OnConnect fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnHandShake(IntPtr pListener, Sdk.OnHandShake fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnReceive(IntPtr pListener, Sdk.OnReceive fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnSend(IntPtr pListener, Sdk.OnSend fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnClose(IntPtr pListener, Sdk.OnClose fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpAgent_OnShutdown(IntPtr pListener, Sdk.OnShutdown fn);
 
         /**********************************************************************************/
         /*************************** HTTP Client 回调函数设置方法 **************************/
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnMessageBegin(IntPtr pListener, OnMessageBegin fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnStatusLine(IntPtr pListener, OnStatusLine fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnHeader(IntPtr pListener, OnHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnHeadersComplete(IntPtr pListener, OnHeadersComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnBody(IntPtr pListener, OnBody fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnChunkHeader(IntPtr pListener, OnChunkHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnChunkComplete(IntPtr pListener, OnChunkComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnMessageComplete(IntPtr pListener, OnMessageComplete fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnUpgrade(IntPtr pListener, OnUpgrade fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnParseError(IntPtr pListener, OnParseError fn);
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnWSMessageHeader(IntPtr pListener, OnWSMessageHeader fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnWSMessageBody(IntPtr pListener, OnWSMessageBody fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnWSMessageComplete(IntPtr pListener, OnWSMessageComplete fn);
 
 
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnPrepareConnect(IntPtr pListener, Sdk.OnPrepareConnect fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnConnect(IntPtr pListener, Sdk.OnConnect fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnHandShake(IntPtr pListener, Sdk.OnHandShake fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnReceive(IntPtr pListener, Sdk.OnReceive fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnSend(IntPtr pListener, Sdk.OnSend fn);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_Set_FN_HttpClient_OnClose(IntPtr pListener, Sdk.OnClose fn);
 
 
@@ -612,7 +607,7 @@ namespace HPSocketCS
                * 返回值：	TRUE			-- 成功
                *			FALSE			-- 失败
                */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_SendResponse(IntPtr pServer, IntPtr dwConnID, ushort usStatusCode, string lpszDesc, THeader[] lpHeaders, int iHeaderCount, byte[] pData, int iLength);
 
         /*
@@ -629,7 +624,7 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_SendLocalFile(IntPtr pServer, IntPtr dwConnID, string lpszFileName, ushort usStatusCode, string lpszDesc, THeader[] lpHeaders, int iHeaderCount);
 
         /*
@@ -651,9 +646,9 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_SendWSMessage(IntPtr pServer, IntPtr dwConnID, bool bFinal, WSReserved iReserved, WSOpcode iOperationCode, byte[] lpszMask, IntPtr pData, int iLength, ulong ullBodyLen);
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_SendWSMessage(IntPtr pServer, IntPtr dwConnID, bool bFinal, WSReserved iReserved, WSOpcode iOperationCode, byte[] lpszMask, byte[] pdata, int iLength, ulong ullBodyLen);
 
 
@@ -665,7 +660,7 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_Release(IntPtr pServer, IntPtr dwConnID);
 
 
@@ -676,94 +671,94 @@ namespace HPSocketCS
         * 返回值：	TRUE	-- 成功
         *			FALSE	-- 失败，可通过 SYS_GetLastError() 获取失败原因
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_StartHttp(IntPtr pServer, IntPtr dwConnID);
 
         /******************************************************************************/
         /***************************** Server 属性访问方法 *****************************/
 
         /* 设置连接释放延时（默认：3000 毫秒） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpServer_SetReleaseDelay(IntPtr pServer, uint dwReleaseDelay);
         /* 获取连接释放延时 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern uint HP_HttpServer_GetReleaseDelay(IntPtr pServer);
         /* 获取请求行 URL 域掩码（URL 域参考：EnHttpUrlField） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpServer_GetUrlFieldSet(IntPtr pServer, IntPtr dwConnID);
         /* 获取某个 URL 域值 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpServer_GetUrlField(IntPtr pServer, IntPtr dwConnID, HttpUrlField enField);
         /* 获取请求方法 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpServer_GetMethod(IntPtr pServer, IntPtr dwConnID);
 
         /* 设置本地协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpServer_SetLocalVersion(IntPtr pServer, HttpVersion usVersion);
         /* 获取本地协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern HttpVersion HP_HttpServer_GetLocalVersion(IntPtr pServer);
 
         /* 检查是否升级协议 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_IsUpgrade(IntPtr pServer, IntPtr dwConnID);
         /* 检查是否有 Keep-Alive 标识 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_IsKeepAlive(IntPtr pServer, IntPtr dwConnID);
         /* 获取协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpServer_GetVersion(IntPtr pServer, IntPtr dwConnID);
         /* 获取主机 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpServer_GetHost(IntPtr pServer, IntPtr dwConnID);
         /* 获取内容长度 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern long HP_HttpServer_GetContentLength(IntPtr pServer, IntPtr dwConnID);
         /* 获取内容类型 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpServer_GetContentType(IntPtr pServer, IntPtr dwConnID);
         /* 获取内容编码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpServer_GetContentEncoding(IntPtr pServer, IntPtr dwConnID);
         /* 获取传输编码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpServer_GetTransferEncoding(IntPtr pServer, IntPtr dwConnID);
         /* 获取协议升级类型 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern HttpUpgradeType HP_HttpServer_GetUpgradeType(IntPtr pServer, IntPtr dwConnID);
         /* 获取解析错误代码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpServer_GetParseErrorCode(IntPtr pServer, IntPtr dwConnID, ref IntPtr lpszErrorDesc);
 
         /* 获取某个请求头（单值） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_GetHeader(IntPtr pServer, IntPtr dwConnID, string lpszName, ref IntPtr lpszValue);
         /* 获取某个请求头（多值） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_GetHeaders(IntPtr pServer, IntPtr dwConnID, string lpszName, IntPtr[] lpszValue, ref uint pdwCount);
         /* 获取所有请求头 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_GetAllHeaders(IntPtr pServer, IntPtr dwConnID, IntPtr lpHeaders, ref uint pdwCount);
         /* 获取所有请求头名称 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_GetAllHeaderNames(IntPtr pServer, IntPtr dwConnID, IntPtr[] lpszName, ref uint pdwCount);
         /* 获取 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_GetCookie(IntPtr pServer, IntPtr dwConnID, string lpszName, ref IntPtr lpszValue);
         /* 获取所有 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_GetAllCookies(IntPtr pServer, IntPtr dwConnID, IntPtr lpCookies, ref uint pdwCount);
 
         /* 获取当前 WebSocket 消息状态，传入 nullptr 则不获取相应字段 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_GetWSMessageState(IntPtr pServer, IntPtr dwConnID, ref bool lpbFinal, ref WSReserved lpiReserved, ref WSOpcode lpiOperationCode, ref IntPtr lpszMask, ref ulong lpullBodyLen, ref ulong lpullBodyRemain);
 
         /* 设置 HTTP 启动方式（默认：TRUE，自动启动） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpServer_SetHttpAutoStart(IntPtr pServer, bool bAutoStart);
         /* 获取 HTTP 启动方式 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpServer_IsHttpAutoStart(IntPtr pServer);
 
         /**************************************************************************/
@@ -783,7 +778,7 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendRequest(IntPtr pAgent, IntPtr dwConnID, string lpszMethod, string lpszPath, THeader[] lpHeaders, int iHeaderCount, byte[] pData, int iLength);
 
         /*
@@ -799,35 +794,35 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendLocalFile(IntPtr pAgent, IntPtr dwConnID, string lpszFileName, string lpszMethod, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
 
         /* 发送 POST 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendPost(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount, string pBody, int iLength);
         /* 发送 PUT 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendPut(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount, string pBody, int iLength);
         /* 发送 PATCH 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendPatch(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount, string pBody, int iLength);
         /* 发送 GET 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendGet(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 DELETE 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendDelete(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 HEAD 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendHead(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 TRACE 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendTrace(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 OPTIONS 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendOptions(IntPtr pAgent, IntPtr dwConnID, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 CONNECT 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendConnect(IntPtr pAgent, IntPtr dwConnID, string lpszHost, THeader[] lpHeaders, int iHeaderCount);
 
         /*
@@ -849,7 +844,7 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_SendWSMessage(IntPtr pAgent, IntPtr dwConnID, bool bFinal, byte iReserved, byte iOperationCode, byte[] lpszMask, byte[] pData, int iLength, ulong ullBodyLen);
 
 
@@ -860,86 +855,86 @@ namespace HPSocketCS
         * 返回值：	TRUE	-- 成功
         *			FALSE	-- 失败，可通过 SYS_GetLastError() 获取失败原因
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_StartHttp(IntPtr pAgent, IntPtr dwConnID);
 
         /******************************************************************************/
         /***************************** Agent 属性访问方法 ******************************/
 
         /* 获取 HTTP 状态码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpAgent_GetStatusCode(IntPtr pAgent, IntPtr dwConnID);
 
         /* 设置本地协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpAgent_SetLocalVersion(IntPtr pAgent, HttpVersion usVersion);
         /* 获取本地协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern HttpVersion HP_HttpAgent_GetLocalVersion(IntPtr pAgent);
 
         /* 检查是否升级协议 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_IsUpgrade(IntPtr pAgent, IntPtr dwConnID);
         /* 检查是否有 Keep-Alive 标识 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_IsKeepAlive(IntPtr pAgent, IntPtr dwConnID);
         /* 获取协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpAgent_GetVersion(IntPtr pAgent, IntPtr dwConnID);
         /* 获取内容长度 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern long HP_HttpAgent_GetContentLength(IntPtr pAgent, IntPtr dwConnID);
         /* 获取内容类型 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpAgent_GetContentType(IntPtr pAgent, IntPtr dwConnID);
         /* 获取内容编码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpAgent_GetContentEncoding(IntPtr pAgent, IntPtr dwConnID);
         /* 获取传输编码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpAgent_GetTransferEncoding(IntPtr pAgent, IntPtr dwConnID);
         /* 获取协议升级类型 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern HttpUpgradeType HP_HttpAgent_GetUpgradeType(IntPtr pAgent, IntPtr dwConnID);
         /* 获取解析错误代码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpAgent_GetParseErrorCode(IntPtr pAgent, IntPtr dwConnID, ref IntPtr lpszErrorDesc);
 
         /* 获取某个请求头（单值） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_GetHeader(IntPtr pAgent, IntPtr dwConnID, string lpszName, ref IntPtr lpszValue);
         /* 获取某个请求头（多值） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_GetHeaders(IntPtr pAgent, IntPtr dwConnID, string lpszName, IntPtr[] lpszValue, ref uint pdwCount);
         /* 获取所有请求头 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_GetAllHeaders(IntPtr pAgent, IntPtr dwConnID, IntPtr lpHeaders, ref uint pdwCount);
         /* 获取所有请求头名称 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_GetAllHeaderNames(IntPtr pAgent, IntPtr dwConnID, IntPtr[] lpszName, ref uint pdwCount);
 
         /* 设置是否使用 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpAgent_SetUseCookie(IntPtr pAgent, bool bUseCookie);
         /* 检查是否使用 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_IsUseCookie(IntPtr pAgent);
 
         /* 获取 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_GetCookie(IntPtr pAgent, IntPtr dwConnID, string lpszName, ref IntPtr lpszValue);
         /* 获取所有 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_GetAllCookies(IntPtr pAgent, IntPtr dwConnID, IntPtr lpCookies, ref uint pdwCount);
         /* 获取当前 WebSocket 消息状态，传入 nullptr 则不获取相应字段 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_GetWSMessageState(IntPtr pAgent, IntPtr dwConnID, ref bool lpbFinal, ref byte lpiReserved, ref byte lpiOperationCode, ref IntPtr lpszMask, ref ulong lpullBodyLen, ref ulong lpullBodyRemain);
 
         /* 设置 HTTP 启动方式（默认：TRUE，自动启动） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpAgent_SetHttpAutoStart(IntPtr pAgent, bool bAutoStart);
         /* 获取 HTTP 启动方式 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpAgent_IsHttpAutoStart(IntPtr pAgent);
 
 
@@ -960,7 +955,7 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendRequest(IntPtr pClient, string lpszMethod, string lpszPath, THeader[] lpHeaders, int iHeaderCount, byte[] pBody, int iLength);
 
         /*
@@ -976,35 +971,35 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendLocalFile(IntPtr pClient, string lpszFileName, string lpszMethod, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
 
         /* 发送 POST 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendPost(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount, string pBody, int iLength);
         /* 发送 PUT 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendPut(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount, string pBody, int iLength);
         /* 发送 PATCH 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendPatch(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount, string pBody, int iLength);
         /* 发送 GET 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendGet(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 DELETE 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendDelete(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 HEAD 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendHead(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 TRACE 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendTrace(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 OPTIONS 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendOptions(IntPtr pClient, string lpszPath, THeader[] lpHeaders, int iHeaderCount);
         /* 发送 CONNECT 请求 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendConnect(IntPtr pClient, string lpszHost, THeader[] lpHeaders, int iHeaderCount);
 
         /*
@@ -1025,7 +1020,7 @@ namespace HPSocketCS
         * 返回值：	TRUE			-- 成功
         *			FALSE			-- 失败
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_SendWSMessage(IntPtr pClient, bool bFinal, byte iReserved, byte iOperationCode, byte[] lpszMask, byte[] pData, int iLength, ulong ullBodyLen);
 
         /*
@@ -1035,7 +1030,7 @@ namespace HPSocketCS
         * 返回值：	TRUE	-- 成功
         *			FALSE	-- 失败，可通过 SYS_GetLastError() 获取失败原因
         */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_StartHttp(IntPtr pClient);
 
 
@@ -1043,81 +1038,81 @@ namespace HPSocketCS
         /***************************** Client 属性访问方法 *****************************/
 
         /* 获取 HTTP 状态码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpClient_GetStatusCode(IntPtr pClient);
 
         /* 设置本地协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpClient_SetLocalVersion(IntPtr pClient, HttpVersion usVersion);
         /* 获取本地协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern HttpVersion HP_HttpClient_GetLocalVersion(IntPtr pClient);
 
         /* 检查是否升级协议 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_IsUpgrade(IntPtr pClient);
         /* 检查是否有 Keep-Alive 标识 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_IsKeepAlive(IntPtr pClient);
         /* 获取协议版本 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpClient_GetVersion(IntPtr pClient);
         /* 获取内容长度 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern long HP_HttpClient_GetContentLength(IntPtr pClient);
         /* 获取内容类型 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpClient_GetContentType(IntPtr pClient);
         /* 获取内容编码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpClient_GetContentEncoding(IntPtr pClient);
         /* 获取传输编码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern IntPtr HP_HttpClient_GetTransferEncoding(IntPtr pClient);
         /* 获取协议升级类型 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern HttpUpgradeType HP_HttpClient_GetUpgradeType(IntPtr pClient);
         /* 获取解析错误代码 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ushort HP_HttpClient_GetParseErrorCode(IntPtr pClient, ref IntPtr lpszErrorDesc);
 
         /* 获取某个请求头（单值） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_GetHeader(IntPtr pClient, string lpszName, ref IntPtr lpszValue);
         /* 获取某个请求头（多值） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_GetHeaders(IntPtr pClient, string lpszName, IntPtr[] lpszValue, ref uint pdwCount);
         /* 获取所有请求头 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_GetAllHeaders(IntPtr pClient, IntPtr lpHeaders, ref uint pdwCount);
         /* 获取所有请求头名称 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_GetAllHeaderNames(IntPtr pClient, IntPtr[] lpszName, ref uint pdwCount);
 
         /* 设置是否使用 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpClient_SetUseCookie(IntPtr pClient, bool bUseCookie);
         /* 检查是否使用 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_IsUseCookie(IntPtr pClient);
         /* 获取 Cookie */
 
         /* 获取 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_GetCookie(IntPtr pClient, string lpszName, ref IntPtr lpszValue);
         /* 获取所有 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_GetAllCookies(IntPtr pClient, IntPtr lpCookies, ref uint pdwCount);
 
         /* 获取当前 WebSocket 消息状态，传入 nullptr 则不获取相应字段 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_GetWSMessageState(IntPtr pClient, ref bool lpbFinal, ref byte lpiReserved, ref byte lpiOperationCode, ref IntPtr lpszMask, ref ulong lpullBodyLen, ref ulong lpullBodyRemain);
 
         /* 设置 HTTP 启动方式（默认：TRUE，自动启动） */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpClient_SetHttpAutoStart(IntPtr pClient, bool bAutoStart);
         /* 获取 HTTP 启动方式 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpClient_IsHttpAutoStart(IntPtr pClient);
         /**************************************************************************/
         /************************ HTTP Sync Client 操作方法 ************************/
@@ -1134,7 +1129,7 @@ namespace HPSocketCS
         /// <param name="iLength">请求体长度</param>
         /// <param name="bForceReconnect">强制重新连接（默认：FALSE，当请求 URL 的主机和端口与现有连接一致时，重用现有连接）</param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpSyncClient_OpenUrl(IntPtr pClient, string lpszMethod, string lpszUrl, THeader[] lpHeaders, int iHeaderCount, string pData, int iLength, bool bForceReconnect);
 
 
@@ -1144,7 +1139,7 @@ namespace HPSocketCS
         /// </summary>
         /// <param name="pClient"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpSyncClient_CleanupRequestResult(IntPtr pClient);
 
         /******************************************************************************/
@@ -1155,7 +1150,7 @@ namespace HPSocketCS
         /// <param name="pClient"></param>
         /// <param name="dwConnectTimeout"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpSyncClient_SetConnectTimeout(IntPtr pClient, uint dwConnectTimeout);
         /// <summary>
         /// 设置请求超时（毫秒，0：无限等待，默认：10000）
@@ -1163,7 +1158,7 @@ namespace HPSocketCS
         /// <param name="pClient"></param>
         /// <param name="dwConnectTimeout"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpSyncClient_SetRequestTimeout(IntPtr pClient, uint dwRequestTimeout);
         /// <summary>
         /// 获取连接超时
@@ -1171,7 +1166,7 @@ namespace HPSocketCS
         /// <param name="pClient"></param>
         /// <param name="dwConnectTimeout"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern uint HP_HttpSyncClient_GetConnectTimeout(IntPtr pClient);
         /// <summary>
         /// 获取请求超时
@@ -1179,7 +1174,7 @@ namespace HPSocketCS
         /// <param name="pClient"></param>
         /// <param name="dwConnectTimeout"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern uint HP_HttpSyncClient_GetRequestTimeout(IntPtr pClient);
 
         /// <summary>
@@ -1188,53 +1183,53 @@ namespace HPSocketCS
         /// <param name="pClient"></param>
         /// <param name="dwConnectTimeout"></param>
         /// <returns></returns>
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern uint HP_HttpSyncClient_GetResponseBody(IntPtr pClient, ref IntPtr lpszBody, ref int iLength);
 
         /**************************************************************************/
         /*************************** HTTP Cookie 管理方法 **************************/
         /* 从文件加载 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_MGR_LoadFromFile(string lpszFile, bool bKeepExists /*= TRUE*/);
         /* 保存 Cookie 到文件 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_MGR_SaveToFile(string lpszFile, bool bKeepExists /*= TRUE*/);
         /* 清理 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_MGR_ClearCookies(string lpszDomain /*= nullptr*/, string lpszPath /*= nullptr*/);
         /* 清理过期 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_MGR_RemoveExpiredCookies(string lpszDomain /*= nullptr*/, string lpszPath /*= nullptr*/);
         /* 设置 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_MGR_SetCookie(string lpszName, string lpszValue, string lpszDomain, string lpszPath, int iMaxAge /*= -1*/, bool bHttpOnly /*= FALSE*/, bool bSecure /*= FALSE*/, int enSameSite /*= 0*/, bool bOnlyUpdateValueIfExists /*= TRUE*/);
         /* 删除 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_MGR_DeleteCookie(string lpszDomain, string lpszPath, string lpszName);
         /* 设置是否允许第三方 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern void HP_HttpCookie_MGR_SetEnableThirdPartyCookie(bool bEnableThirdPartyCookie /*= TRUE*/);
         /* 检查是否允许第三方 Cookie */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_MGR_IsEnableThirdPartyCookie();
 
         /* Cookie expires 字符串转换为整数 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_HLP_ParseExpires(string lpszExpires, ref ulong ptmExpires);
         /* 整数转换为 Cookie expires 字符串 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_HLP_MakeExpiresStr([MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszBuff, ref int piBuffLen, ulong tmExpires);
         /* 生成 Cookie 字符串 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern bool HP_HttpCookie_HLP_ToString([MarshalAs(UnmanagedType.LPStr)] StringBuilder lpszBuff, ref int piBuffLen, string lpszName, string lpszValue, string lpszDomain, string lpszPath, int iMaxAge /*= -1*/, bool bHttpOnly /*= FALSE*/, bool bSecure /*= FALSE*/, int enSameSite /*= 0*/);
         /* 获取当前 UTC 时间 */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ulong HP_HttpCookie_HLP_CurrentUTCTime();
         /* Max-Age -> expires */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern ulong HP_HttpCookie_HLP_MaxAgeToExpires(int iMaxAge);
         /* expires -> Max-Age */
-        [DllImport(HPSOCKET_HTTP_DLL_PATH, SetLastError = true)]
+        [DllImport(Sdk.HPSOCKET_DLL_PATH, CharSet = CharSet.Ansi, SetLastError = true)]
         public static extern int HP_HttpCookie_HLP_ExpiresToMaxAge(ulong tmExpires);
     }
 }
