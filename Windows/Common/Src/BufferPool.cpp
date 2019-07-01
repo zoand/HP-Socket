@@ -66,7 +66,7 @@ void TItem::Destruct(TItem* pItem)
 	heap.Free(pItem);
 }
 
-inline int TItem::Cat(const BYTE* pData, int length)
+int TItem::Cat(const BYTE* pData, int length)
 {
 	ASSERT(pData != nullptr && length > 0);
 
@@ -81,13 +81,13 @@ inline int TItem::Cat(const BYTE* pData, int length)
 	return cat;
 }
 
-inline int TItem::Cat(const TItem& other)
+int TItem::Cat(const TItem& other)
 {
 	ASSERT(this != &other);
 	return Cat(other.Ptr(), other.Size());
 }
 
-inline int TItem::Fetch(BYTE* pData, int length)
+int TItem::Fetch(BYTE* pData, int length)
 {
 	ASSERT(pData != nullptr && length > 0);
 
@@ -98,7 +98,7 @@ inline int TItem::Fetch(BYTE* pData, int length)
 	return fetch;
 }
 
-inline int TItem::Peek(BYTE* pData, int length)
+int TItem::Peek(BYTE* pData, int length)
 {
 	ASSERT(pData != nullptr && length > 0);
 
@@ -108,7 +108,7 @@ inline int TItem::Peek(BYTE* pData, int length)
 	return peek;
 }
 
-inline int TItem::Reduce(int length)
+int TItem::Reduce(int length)
 {
 	ASSERT(length > 0);
 
@@ -118,7 +118,7 @@ inline int TItem::Reduce(int length)
 	return reduce;
 }
 
-inline void	TItem::Reset(int first, int last)
+void	TItem::Reset(int first, int last)
 {
 	ASSERT(first >= -1 && first <= capacity);
 	ASSERT(last >= -1 && last <= capacity);
@@ -242,7 +242,7 @@ void TBuffer::Destruct(TBuffer* pBuffer)
 	heap.Free(pBuffer);
 }
 
-inline void TBuffer::Reset()
+void TBuffer::Reset()
 {
 	id		 = 0;
 	length	 = 0;

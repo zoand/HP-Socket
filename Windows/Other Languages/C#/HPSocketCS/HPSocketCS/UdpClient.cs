@@ -122,7 +122,7 @@ namespace HPSocketCS
                 throw new Exception("port is zero");
             }
 
-            if (IsStarted == true)
+            if (pClient == IntPtr.Zero)
             {
                 return false;
             }
@@ -151,7 +151,7 @@ namespace HPSocketCS
                 throw new Exception("port is zero");
             }
 
-            if (IsStarted == true)
+            if (pClient == IntPtr.Zero)
             {
                 return false;
             }
@@ -181,7 +181,7 @@ namespace HPSocketCS
                 throw new Exception("port is zero");
             }
 
-            if (IsStarted == true)
+            if (pClient == IntPtr.Zero)
             {
                 return false;
             }
@@ -198,7 +198,7 @@ namespace HPSocketCS
         /// <returns></returns>
         public bool Stop()
         {
-            if (IsStarted == false)
+            if (pClient == IntPtr.Zero)
             {
                 return false;
             }

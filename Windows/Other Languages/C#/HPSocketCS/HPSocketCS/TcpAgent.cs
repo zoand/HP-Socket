@@ -179,7 +179,7 @@ namespace HPSocketCS
                 return false;
             }
 
-            if (IsStarted == true)
+            if (pAgent == IntPtr.Zero)
             {
                 return false;
             }
@@ -195,7 +195,7 @@ namespace HPSocketCS
         /// <returns></returns>
         public bool Stop()
         {
-            if (IsStarted == false)
+            if (pAgent == IntPtr.Zero)
             {
                 return false;
             }

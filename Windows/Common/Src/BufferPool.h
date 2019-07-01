@@ -48,12 +48,12 @@ struct TItem
 	friend struct	TBuffer;
 
 public:
-	inline int Cat		(const BYTE* pData, int length);
-	inline int Cat		(const TItem& other);
-	inline int Fetch	(BYTE* pData, int length);
-	inline int Peek		(BYTE* pData, int length);
-	inline int Reduce	(int length);
-	inline void	Reset	(int first = 0, int last = 0);
+	int Cat		(const BYTE* pData, int length);
+	int Cat		(const TItem& other);
+	int Fetch	(BYTE* pData, int length);
+	int Peek		(BYTE* pData, int length);
+	int Reduce	(int length);
+	void	Reset	(int first = 0, int last = 0);
 
 	BYTE*		Ptr		()			{return begin;}
 	const BYTE*	Ptr		()	const	{return begin;}
@@ -289,12 +289,12 @@ public:
 		return pItem;
 	}
 
-	inline void Prepare()
+	void Prepare()
 	{
 		m_lsFreeItem.Reset(m_dwPoolSize);
 	}
 
-	inline void Clear()
+	void Clear()
 	{
 		T* pItem = nullptr;
 
@@ -581,7 +581,7 @@ private:
 	int IncreaseLength	(int len)	{return (length += len);}
 	int DecreaseLength	(int len)	{return (length -= len);}
 
-	inline void Reset	();
+	void Reset	();
 
 private:
 	TBuffer(CPrivateHeap& hp, CItemPool& itPool, ULONG_PTR dwID = 0)
