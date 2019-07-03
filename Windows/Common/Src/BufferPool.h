@@ -296,13 +296,7 @@ public:
 
 	void Clear()
 	{
-		T* pItem = nullptr;
-
-		while(m_lsFreeItem.TryGet(&pItem))
-			T::Destruct(pItem);
-
-		ENSURE(m_lsFreeItem.IsEmpty());
-		m_lsFreeItem.Reset();
+		m_lsFreeItem.Clear();
 
 		m_heap.Reset();
 	}
